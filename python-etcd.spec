@@ -20,12 +20,14 @@ BuildRequires:  python2-devel
 BuildRequires:  python-dns
 BuildRequires:  python-mock
 BuildRequires:  python-nose
+BuildRequires:  python-urllib3
 BuildRequires:  pyOpenSSL
 
 BuildRequires:  python3-devel
 BuildRequires:  python3-dns
 BuildRequires:  python3-mock
 BuildRequires:  python3-nose
+BuildRequires:  python3-urllib3
 BuildRequires:  python3-pyOpenSSL
 
 # Needed for tests
