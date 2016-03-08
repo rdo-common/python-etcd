@@ -1,0 +1,25 @@
+commit 927fdb160e9b197ee24ce05e8289f5d2def526dc
+Author: Matthew Barnes <mbarnes@redhat.com>
+Date:   Sun Mar 6 20:23:58 2016 -0500
+
+    Work around EtcdRoleTest failure in test_read()
+
+diff --git a/src/etcd/tests/test_auth.py b/src/etcd/tests/test_auth.py
+index fc6ce70..14475f9 100644
+--- a/src/etcd/tests/test_auth.py
++++ b/src/etcd/tests/test_auth.py
+@@ -127,7 +127,13 @@ class EtcdRoleTest(TestEtcdAuthBase):
+         except:
+             self.fail('Reading an existing role failed')
+ 
+-        self.assertEquals(r.acls, {'*': 'RW'})
++        # XXX The ACL path result changed from '*' to '/*' at some point
++        #     between etcd-2.2.2 and 2.2.5.  They're equivalent so allow
++        #     for both.
++        if '/*' in r.acls:
++            self.assertEquals(r.acls, {'/*': 'RW'})
++        else:
++            self.assertEquals(r.acls, {'*': 'RW'})
+         # We can actually skip most other read tests as they are common
+         # with EtcdUser
+ 
