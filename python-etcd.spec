@@ -2,7 +2,7 @@
 
 Name:           %{srcname}
 Version:        0.4.3
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        A python client library for etcd
 
 License:        MIT
@@ -95,5 +95,8 @@ election.
 %{python3_sitelib}/*
 
 %changelog
+* Tue Jul 19 2016 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 0.4.3-2
+- https://fedoraproject.org/wiki/Changes/Automatic_Provides_for_Python_RPM_Packages
+
 * Mon Feb 22 2016 Matthew Barnes <mbarnes@redhat.com> - 0.4.3-1
 - Initial packaging.
