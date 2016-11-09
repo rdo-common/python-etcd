@@ -2,7 +2,7 @@
 
 Name:           %{srcname}
 Version:        0.4.3
-Release:        2%{?dist}
+Release:        3%{?dist}
 Summary:        A python client library for etcd
 
 License:        MIT
@@ -15,6 +15,9 @@ Source0:        https://github.com/jplana/%{srcname}/archive/%{version}.tar.gz
 #VCS: git:https://github.com/jplana/python-etcd
 
 BuildArch:      noarch
+
+# See https://bugzilla.redhat.com/1393497
+ExclusiveArch:  %{ix86} x86_64 %{arm} aarch64 ppc64le
 
 BuildRequires:  python2-devel
 BuildRequires:  python-dns
@@ -95,6 +98,10 @@ election.
 %{python3_sitelib}/*
 
 %changelog
+* Wed Nov 09 2016 Matthew Barnes <mbarnes@redhat.com> - 0.4.3-3
+- etcd now excludes ppc64; follow suit.
+  related: #1393497
+
 * Tue Jul 19 2016 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 0.4.3-2
 - https://fedoraproject.org/wiki/Changes/Automatic_Provides_for_Python_RPM_Packages
 
