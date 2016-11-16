@@ -2,7 +2,7 @@
 
 Name:           %{srcname}
 Version:        0.4.3
-Release:        3%{?dist}
+Release:        4%{?dist}
 Summary:        A python client library for etcd
 
 License:        MIT
@@ -17,7 +17,7 @@ Source0:        https://github.com/jplana/%{srcname}/archive/%{version}.tar.gz
 BuildArch:      noarch
 
 # See https://bugzilla.redhat.com/1393497
-ExclusiveArch:  %{ix86} x86_64 %{arm} aarch64 ppc64le
+ExclusiveArch:  noarch %{ix86} x86_64 %{arm} aarch64 ppc64le
 
 BuildRequires:  python2-devel
 BuildRequires:  python-dns
@@ -98,6 +98,9 @@ election.
 %{python3_sitelib}/*
 
 %changelog
+* Wed Nov 16 2016 Steve Milner <smilner@redhat.com> - 0.4.3-4
+- Added noarch to the list to build.
+
 * Wed Nov 09 2016 Matthew Barnes <mbarnes@redhat.com> - 0.4.3-3
 - etcd now excludes ppc64; follow suit.
   related: #1393497
