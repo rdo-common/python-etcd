@@ -1,4 +1,5 @@
-%global srcname python-etcd
+%global modname etcd
+%global srcname python-%{modname}
 
 Name:           %{srcname}
 Version:        0.4.3
@@ -36,7 +37,7 @@ BuildRequires:  python3-pyOpenSSL
 # Needed for tests
 BuildRequires:  etcd
 
-Patch1: python-etcd-0.4.3-auth-test-fail-workaround.patch
+Patch1: python-etcd-0.4.3-Removed-the-new-auth-module.patch
 
 %description
 Client library for interacting with an etcd service, providing Python
@@ -48,7 +49,7 @@ election.
 Summary:        %summary
 Requires:       etcd
 Requires:       python-dns
-%{?python_provide:%python_provide python2-%{srcname}}
+%{?python_provide:%python_provide python2-%{modname}}
 
 %description -n python2-%{srcname}
 Client library for interacting with an etcd service, providing Python
@@ -60,7 +61,7 @@ election.
 Summary:        %summary
 Requires:       etcd
 Requires:       python3-dns
-%{?python_provide:%python_provide python3-%{srcname}}
+%{?python_provide:%python_provide python3-%{modname}}
 
 %description -n python3-%{srcname}
 Client library for interacting with an etcd service, providing Python
@@ -100,6 +101,8 @@ election.
 %changelog
 * Wed Nov 16 2016 Steve Milner <smilner@redhat.com> - 0.4.3-4
 - Added noarch to the list to build.
+- Fixed provides (see rhbz#1374240)
+- Disabled the new auth module (see https://github.com/jplana/python-etcd/issues/210)
 
 * Wed Nov 09 2016 Matthew Barnes <mbarnes@redhat.com> - 0.4.3-3
 - etcd now excludes ppc64; follow suit.
