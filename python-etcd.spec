@@ -3,7 +3,7 @@
 
 Name:           %{srcname}
 Version:        0.4.3
-Release:        4%{?dist}
+Release:        5%{?dist}
 Summary:        A python client library for etcd
 
 License:        MIT
@@ -81,7 +81,7 @@ election.
 %py3_install
 
 %check
-%{__python2} setup.py test
+nosetests src/etcd/tests/unit/
 
 # This seems to require a newer python3-mock than what's currently available
 # in F23, and even Rawhide.  If I let it download mock-1.3.0 from the Python
@@ -99,6 +99,9 @@ election.
 %{python3_sitelib}/*
 
 %changelog
+* Fri Nov 18 2016 Steve Milner <smilner@redhat.com> - 0.4.3-5
+- Running unittests only.
+
 * Wed Nov 16 2016 Steve Milner <smilner@redhat.com> - 0.4.3-4
 - Added noarch to the list to build.
 - Fixed provides (see rhbz#1374240)
