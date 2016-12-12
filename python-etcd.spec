@@ -27,13 +27,6 @@ BuildRequires:  python-nose
 BuildRequires:  python-urllib3
 BuildRequires:  pyOpenSSL
 
-BuildRequires:  python3-devel
-BuildRequires:  python3-dns
-BuildRequires:  python3-mock
-BuildRequires:  python3-nose
-BuildRequires:  python3-urllib3
-BuildRequires:  python3-pyOpenSSL
-
 # Needed for tests
 BuildRequires:  etcd
 
@@ -57,46 +50,22 @@ access to the full etcd REST API.  Includes authentication, accessing
 and manipulating shared content, managing cluster members, and leader
 election.
 
-%package -n python3-%{srcname}
-Summary:        %summary
-Requires:       etcd
-Requires:       python3-dns
-%{?python_provide:%python_provide python3-%{modname}}
-
-%description -n python3-%{srcname}
-Client library for interacting with an etcd service, providing Python
-access to the full etcd REST API.  Includes authentication, accessing
-and manipulating shared content, managing cluster members, and leader
-election.
-
 %prep
 %autosetup -p1
 
 %build
 %py2_build
-%py3_build
 
 %install
 %py2_install
-%py3_install
 
 %check
 nosetests src/etcd/tests/unit/
-
-# This seems to require a newer python3-mock than what's currently available
-# in F23, and even Rawhide.  If I let it download mock-1.3.0 from the Python
-# Package Index (pypi) then tests pass.
-#%%{__python3} setup.py test
 
 %files -n python2-%{srcname}
 %doc README.rst
 %license LICENSE.txt
 %{python2_sitelib}/*
-
-%files -n python3-%{srcname}
-%doc README.rst
-%license LICENSE.txt
-%{python3_sitelib}/*
 
 %changelog
 * Fri Nov 18 2016 Steve Milner <smilner@redhat.com> - 0.4.3-5
